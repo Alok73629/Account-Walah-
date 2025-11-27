@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 12 Accounts - Account Wallah</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+</head>
+<body class="dark-mode">
+
+<header>
+  <div class="logo"><img src="images/logo.png" alt="Account Wallah" height="40"></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#notes">Notes</a></li>
+      <li><a href="#tests">Tests</a></li>
+      <li><button id="mode-toggle">🌙</button></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Class 12 Accounts</h1>
+  <p>All courses are <strong>FREE for the first few days!</strong></p>
+</section>
+
+<section id="videos">
+  <h2>Video Lessons</h2>
+  <div class="video-grid">
+    <div class="video-card">
+      <h3>Chapter 1: Advanced Accounting</h3>
+      <video controls src="videos/class12_ch1.mp4"></video>
+    </div>
+    <div class="video-card">
+      <h3>Chapter 2: Company Accounts</h3>
+      <video controls src="videos/class12_ch2.mp4"></video>
+    </div>
+  </div>
+</section>
+
+<section id="notes">
+  <h2>Download Notes</h2>
+  <ul>
+    <li><a href="notes/class12_ch1.pdf" download>Chapter 1 Notes (PDF)</a></li>
+    <li><a href="notes/class12_ch2.pdf" download>Chapter 2 Notes (PDF)</a></li>
+  </ul>
+</section>
+
+<section id="doubt-solver">
+  <h2>AI Doubt Solver</h2>
+  <input type="text" id="doubt-input-12" placeholder="Type your doubt here...">
+  <button id="solve-btn-12">Solve</button>
+  <div id="doubt-answer-12"></div>
+  <p>Upload an image for instant solution:</p>
+  <input type="file" id="doubt-image-12">
+</section>
+
+<section id="tests">
+  <h2>Auto Checking Tests</h2>
+  <button id="start-test-12">Start Test</button>
+  <div id="test-container-12"></div>
+</section>
+
+<footer>
+  <p>© 2025 Account Wallah. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+/* Class 12 AI Doubt Solver */
+const solveBtn12 = document.getElementById('solve-btn-12');
+if(solveBtn12){
+  solveBtn12.addEventListener('click', () => {
+    const question = document.getElementById('doubt-input-12').value;
+    const answerDiv = document.getElementById('doubt-answer-12');
+    if(question.trim() === "") { answerDiv.textContent = "Please type a doubt first!"; return; }
+    answerDiv.textContent = `AI Answer: Your doubt "${question}" will be solved soon.`;
+  });
+}
+
+/* Class 12 Auto Test */
+const startTest12 = document.getElementById('start-test-12');
+if(startTest12){
+  startTest12.addEventListener('click', () => {
+    const testContainer = document.getElementById('test-container-12');
+    const chapters = {
+      "Chapter 1": [
+        { question: "What is Capital Reserve?", options: ["Profit kept for future use","Debt","Revenue","Liability"], answer: 0 },
+        { question: "Which is an intangible asset?", options: ["Patent","Cash","Stock","Building"], answer: 0 }
+      ],
+      "Chapter 2": [
+        { question: "Share Capital is?", options: ["Funds from shareholders","Loan","Revenue","Expense"], answer: 0 }
+      ]
+    };
+    let currentChapter = Object.keys(chapters)[0];
+    let currentQuestion = 0, score = 0, questions = chapters[currentChapter];
+
+    function showQuestion(){
+      if(currentQuestion>=questions.length){
+        saveScore(currentChapter,score,"12"); displayLeaderboard(currentChapter,"12");
+        testContainer.innerHTML += `<p>${currentChapter} Completed! Score: ${score}/${questions.length}</p>
+          <button id="next-chapter-12">Next Chapter</button>
+          <button id="retake-test-12">Retake</button>`;
+        document.getElementById('next-chapter-12').addEventListener('click',()=>{
+          const chaptersArray = Object.keys(chapters);
+          const nextIndex = chaptersArray.indexOf(currentChapter)+1;
+          if(nextIndex<chaptersArray.length){
+            currentChapter = chaptersArray[nextIndex];
+            questions = chapters[currentChapter]; currentQuestion=0; score=0; showQuestion();
+          } else { testContainer.innerHTML+="<p>All chapters done!</p>"; }
+        });
+        document.getElementById('retake-test-12').addEventListener('click',()=>{currentQuestion=0; score=0; showQuestion();});
+        return;
+      }
+      const q = questions[currentQuestion];
+      testContainer.innerHTML = `<div class="question-card">
+        <h3>${currentChapter} - ${q.question}</h3>
+        <ul class="options">${q.options.map((opt,i)=>`<li><button class="option-btn" data-index="${i}">${opt}</button></li>`).join('')}</ul>
+      </div>`;
+      document.querySelectorAll('.option-btn').forEach(btn=>{btn.addEventListener('click',e=>{if(parseInt(e.target.dataset.index)===q.answer) score++; currentQuestion++; showQuestion();});});
+    }
+
+    showQuestion();
+  });
+}
+</script>
+</body>
+</html>

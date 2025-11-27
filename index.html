@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Wallah - Learn Accounts</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+</head>
+<body class="dark-mode">
+
+<header>
+  <div class="logo"><img src="images/logo.png" alt="Account Wallah" height="40"></div>
+  <nav>
+    <ul>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#doubt-solver">AI Doubt Solver</a></li>
+      <li><a href="#planner">Study Planner</a></li>
+      <li><a href="#tests">Tests</a></li>
+      <li><button id="mode-toggle">🌙</button></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Learn Accounts Like a Pro</h1>
+  <p>All courses are <strong>FREE for the first few days!</strong></p>
+  <a href="#courses" class="btn">Start Learning</a>
+  <a href="#demo" class="btn secondary">Watch Demo</a>
+</section>
+
+<section class="features">
+  <h2>Our Features</h2>
+  <div class="feature-grid">
+    <div class="feature-card">AI Doubt Solver</div>
+    <div class="feature-card">Auto Checking Tests</div>
+    <div class="feature-card">Personal Dashboard</div>
+    <div class="feature-card">Smart Study Planner</div>
+    <div class="feature-card">Doubt Image Scanner</div>
+    <div class="feature-card">Installable App (PWA)</div>
+  </div>
+</section>
+
+<section id="courses">
+  <h2>Courses</h2>
+  <div class="course-grid">
+    <div class="course-card">
+      <h3>Class 11 Accounts</h3>
+      <span class="free-banner">FREE for first few days!</span>
+      <a href="class11.html" class="btn">Enroll Now</a>
+    </div>
+    <div class="course-card">
+      <h3>Class 12 Accounts</h3>
+      <span class="free-banner">FREE for first few days!</span>
+      <a href="class12.html" class="btn">Enroll Now</a>
+    </div>
+  </div>
+</section>
+
+<section id="doubt-solver">
+  <h2>AI Doubt Solver</h2>
+  <input type="text" id="doubt-input" placeholder="Type your doubt here...">
+  <button id="solve-btn">Solve</button>
+  <div id="doubt-answer"></div>
+  <p>Upload an image for instant solution:</p>
+  <input type="file" id="doubt-image">
+</section>
+
+<section id="planner">
+  <h2>Smart Study Planner</h2>
+  <table id="planner-table">
+    <thead>
+      <tr><th>Chapter</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Chapter 1</td><td class="status pending">Pending</td></tr>
+      <tr><td>Chapter 2</td><td class="status current">Current</td></tr>
+      <tr><td>Chapter 3</td><td class="status completed">Completed</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="tests">
+  <h2>Auto Checking Tests</h2>
+  <button id="start-test">Start Test</button>
+  <div id="test-container"></div>
+</section>
+
+<footer>
+  <p>© 2025 Account Wallah. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms & Conditions</a> | 
+    <a href="#">Contact Us</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
